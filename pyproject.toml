@@ -1,0 +1,38 @@
+[project]
+name = "pino"
+version = "0.1.0"
+requires-python = "==3.8.19"
+dependencies = [
+    "clip",
+    "fastapi==0.88.0",
+    "lightning==1.9.1",
+    "matplotlib==3.2.0",
+    "mmcv~=1.6.2",
+    "numpy~=1.23.3",
+    "opencv-python~=4.5.3.56",
+    "pillow~=7.2.0",
+    "pydantic==1.10.18",
+    "scipy~=1.4.1",
+    "smplx~=0.1.28",
+    "tabulate~=0.8.9",
+    "termcolor~=1.1.0",
+    "torch==2.4.1",
+    "torchaudio>=2.4.1",
+    "torchvision==0.2.0",
+    "tqdm~=4.65.0",
+    "yacs~=0.1.8",
+]
+
+[tool.uv.sources]
+torch = [
+    { index = "torch-cu124" },
+]
+torchvision = [
+    { index = "torch-cu124" },
+]
+clip = { git = "https://github.com/openai/CLIP.git" }
+
+[[tool.uv.index]]
+name = "torch-cu124"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
