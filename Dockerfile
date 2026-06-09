@@ -21,8 +21,9 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 WORKDIR /app
 
 # Resolve dependencies first (better layer caching). pyproject pins Python 3.8.19 + torch cu124.
-COPY pyproject.toml uv.lock ./
-RUN uv sync --frozen --no-install-project
+# Upstream PINO doesn't commit uv.lock, so resolve fresh from pyproject (exact pins = deterministic).
+COPY pyproject.toml ./
+RUN uv sync --no-install-project
 
 # Same fixes we needed on the Pod, plus the serverless SDK and gdown for the weight download.
 RUN uv pip install "lightning_cloud==0.5.57" gdown runpod
