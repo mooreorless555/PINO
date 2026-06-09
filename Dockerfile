@@ -26,6 +26,9 @@ RUN uv sync --frozen --no-install-project
 
 # Same fixes we needed on the Pod, plus the serverless SDK and gdown for the weight download.
 RUN uv pip install "lightning_cloud==0.5.57" gdown runpod
+# runpod pulls in pydantic v2, which breaks lightning 1.9.1's lightning.app (needs v1's
+# ModelMetaclass). Force pydantic back to the repo's pin AFTER installing runpod.
+RUN uv pip install "pydantic==1.10.18"
 
 # Copy the repo (handler.py, tools/, models/, configs/, prepare/, ...).
 COPY . /app
