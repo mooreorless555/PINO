@@ -1,0 +1,12 @@
+.venv/
+.git/
+__pycache__/
+*.pyc
+results/
+checkpoints/
+log/
+.prepare/
+*.mp4
+*.pt
+.DS_Store
+infer_run.log
